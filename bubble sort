@@ -26,7 +26,7 @@ public class BubbleSortDemo {
     }
 
     private static int[] DoGetInputArray(boolean testMode) {
-        // Condition: if testMode is true, return fixed test array
+        // If test mode is enabled, provide a fixed array for consistent testing.
         if (testMode) {
             return new int[]{5, 1, 12, -5, 16};
         } else {
@@ -37,13 +37,13 @@ public class BubbleSortDemo {
 
     private static int DoInputArraySize() {
         int size;
-        while (true) { // Loop: repeat until valid input
-// Loop: repeat until valid positive integer is entered
+        while (true) { 
+        // Loop until the user provides a valid, positive integer.
             System.out.print("Enter number of array: ");
             try {
                 size = Integer.parseInt(in.nextLine().trim());
                 if (size > 0) { 
-// Condition: size must be greater than 0
+                // The size of an array must be a positive number.
                     return size;
                 }
                 System.out.println("Size must be positive.");
@@ -56,9 +56,7 @@ public class BubbleSortDemo {
     private static int[] DoGenerateRandomArray(int size) {
         int[] arr = new int[size];
         for (int i = 0; i < size; i++) { 
-// Loop: assign random value to each element
-            // Loop: assign random integer from 0 to 9 to each element
-
+        // Loop to fill the array with random integers (from 0 to 9).
             arr[i] = random.nextInt(10);
         }
         return arr;
@@ -69,16 +67,16 @@ public class BubbleSortDemo {
     }
 
     private static void DoBubbleSort(int[] arr, boolean debug) {
-            // Loop: controls number of passes through the array
-        for (int i = 0; i < arr.length - 1; i++) { // Outer loop: number of passes
-                // Loop: compare each adjacent pair of elements
-            for (int j = 0; j < arr.length - i - 1; j++) { // Inner loop: compare adjacent values
+        // Outer loop controls the number of passes through the array.
+        for (int i = 0; i < arr.length - 1; i++) { 
+            // Inner loop compares adjacent elements.
+            for (int j = 0; j < arr.length - i - 1; j++) { 
                 if (debug) {
                     DoPrintDebugStep(arr, j);
                 }
-// Condition: if current element > next, swap
+                // If the current element is greater than the next one, swap them.
                 if (arr[j] > arr[j + 1]) { 
-//swap
+                //swap
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
