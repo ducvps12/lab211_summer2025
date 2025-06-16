@@ -1,0 +1,96 @@
+package linearsearch;
+
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Step 1: Ask the user to input the number of array elements
+        int numberOfElements = GetPositiveInteger(scanner, "Enter number of array: ");
+
+        // Step 2: Ask the user to input the value they want to search
+        int searchValue = GetPositiveInteger(scanner, "Enter search value: ");
+
+        // Step 3: Generate a random array with the given number of elements
+        int[] array = GenerateRandomArray(numberOfElements);
+
+        // You can use this test array instead if needed for debugging
+        // int[] array = {2, 2, 5, 6, 8, 9};
+
+        // Step 4: Display the generated array
+        DisplayArray(array);
+
+        // Step 5: Perform linear search for the value in the array
+        int[] foundIndices = DoLinearSearch(array, searchValue);
+
+        // Step 6: Display the result of the search
+        DisplaySearchResult(foundIndices, searchValue);
+    }
+
+  
+    public static int GetPositiveInteger(Scanner scanner, String message) {
+        while (true) {
+            try {
+                System.out.print(message);
+                int number = Integer.parseInt(scanner.nextLine()); // Regex: check numeric string
+
+                // Condition: number must be greater than 0
+                if (number > 0) {
+                    return number;
+                } else {
+                    System.out.println("Number must be greater than 0.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter an integer.");
+            }
+        }
+    }
+
+   
+    public static int[] GenerateRandomArray(int length) {
+        int[] array = new int[length];
+        Random random = new Random();
+
+        // Loop: fill each index of array with a random number
+        for (int i = 0; i < length; i++) {
+            array[i] = random.nextInt(length); // Random value in range [0, length - 1]
+        }
+
+        return array;
+    }
+
+   
+    public static void DisplayArray(int[] array) {
+        System.out.println("Generated array: " + Arrays.toString(array));
+    }
+
+   
+    public static int[] DoLinearSearch(int[] array, int target) {
+        int[] resultIndices = new int[array.length];
+        int count = 0;
+
+        // Loop: iterate over each element in the array
+        for (int i = 0; i < array.length; i++) {
+            // Condition: check if current element equals the target
+            if (array[i] == target) {
+                resultIndices[count++] = i;
+            }
+        }
+
+        // Return only the filled portion of resultIndices
+        return Arrays.copyOf(resultIndices, count);
+    }
+
+    static void DisplaySearchResult(int[] indices, int value) {
+        // Condition: check if any index was found
+        if (indices.length > 0) {
+            System.out.println("Found " + value + " at indices: " + Arrays.toString(indices));
+        } else {
+            System.out.println("Value " + value + " not found in array.");
+        }
+    }
+}
