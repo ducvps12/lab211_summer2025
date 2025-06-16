@@ -24,12 +24,7 @@ public class FibonacciPrinter {
         System.out.println("The 45-sequence Fibonacci :");
     }
 
-    /**
-     * Recursively print the first 'count' Fibonacci numbers inline
-     * @param count number of Fibonacci numbers left to print
-     * @param a first number
-     * @param b second number
-     */
+
     public static void PrintFibonacciInline(int count, int a, int b) {
         // Condition: if no more numbers to print
         if (count == 0) return;
@@ -44,13 +39,7 @@ public class FibonacciPrinter {
         PrintFibonacciInline(count - 1, b, a + b);
     }
 
-    /**
-     * Recursively print each Fibonacci number with index and final count
-     * @param count number of Fibonacci numbers left to print
-     * @param a first number
-     * @param b second number
-     * @param index current index (starting from 1)
-     */
+   
     public static void PrintFibonacciWithIndex(int count, int a, int b, int index) {
         // Condition: end recursion and display total
         if (count == 0) {
