@@ -6,7 +6,7 @@ Những lưu ý khi học LAB211 thầy Tuấn:
   - Không code ở main. Main chỉ sử dụng để khai báo biến, gọi hàm, không code ở main
 
 - Không được sử dụng biến toàn cục
-- Phải comment cho Loop, Regex, Condition
+- Phải comment cho Loop, Regex, Condition( tiếng anh)
 
 - Đặt tên biến phải rõ ràng
 
