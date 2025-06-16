@@ -1,0 +1,96 @@
+package com.mycompany.demobubblesort;
+
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Random;
+
+public class Main {
+    private static final Scanner in = new Scanner(System.in);
+    private static final Random random = new Random();
+
+    public static void main(String[] args) {
+        // Set testMode to true to enable fixed test input and debug info
+        boolean testMode = false;
+
+        // Step 1: Get array input (fixed or random depending on test mode)
+        int[] arr = getInputArray(testMode);
+
+        // Step 2: Display unsorted array
+        printArray("Unsorted array: ", arr);
+
+        // Step 3: Sort array using Bubble Sort
+        bubbleSort(arr, testMode);
+
+        // Step 4: Display sorted array
+        printArray("Sorted array: ", arr);
+    }
+
+    // This function returns array: either fixed or random depending on mode
+    private static int[] getInputArray(boolean testMode) {
+        if (testMode) {
+            // Fixed test array for debugging
+            return new int[]{5, 1, 12, -5, 16};
+        } else {
+            int size = inputSize();
+            return generateRandomArray(size);
+        }
+    }
+
+    // This function gets a valid array size from the user
+    private static int inputSize() {
+        int size;
+        while (true) { // Loop: repeatedly ask until valid input
+            System.out.print("Enter number of array: ");
+            try {
+                size = Integer.parseInt(in.nextLine().trim());
+                if (size > 0) { // Condition: size must be positive
+                    return size;
+                }
+                System.out.println("Size must be positive.");
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter an integer.");
+            }
+        }
+    }
+
+    // This function generates an array with random integers between 0 and 9
+    private static int[] generateRandomArray(int size) {
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) { // Loop: assign random value to each element
+            arr[i] = random.nextInt(10);
+        }
+        return arr;
+    }
+
+    // This function prints the array with a label
+    private static void printArray(String title, int[] arr) {
+        System.out.println(title + Arrays.toString(arr));
+    }
+
+    // This function sorts the array using Bubble Sort algorithm
+    private static void bubbleSort(int[] arr, boolean debug) {
+        for (int i = 0; i < arr.length - 1; i++) { // Outer loop: control number of passes
+            for (int j = 0; j < arr.length - i - 1; j++) { // Inner loop: compare adjacent elements
+                if (debug) {
+                    printDebugStep(arr, j); // Print debug info if test mode is enabled
+                }
+                if (arr[j] > arr[j + 1]) { // Condition: swap if out of order
+                    // Swap elements
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    // This function prints the step-by-step comparison (for debugging)
+    private static void printDebugStep(int[] arr, int j) {
+        System.out.print(Arrays.toString(arr) + "    ");
+        if (arr[j] > arr[j + 1]) {
+            System.out.println(arr[j] + " > " + arr[j + 1] + ", swap");
+        } else {
+            System.out.println(arr[j] + " < " + arr[j + 1] + ", ok");
+        }
+    }
+}
