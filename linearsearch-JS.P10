@@ -9,17 +9,17 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Step 1: Ask the user to input the number of array elements
-        int numberOfElements = GetPositiveInteger(scanner, "Enter number of array: ");
+        // Step 1: Enter the number of array elements
+        int numberOfElements = GetPositiveInteger(scanner,  "Enter number of array: ");
 
-        // Step 2: Ask the user to input the value they want to search
+        // Step 2: Input value want to search
         int searchValue = GetPositiveInteger(scanner, "Enter search value: ");
 
-        // Step 3: Generate a random array with the given number of elements
-        int[] array = GenerateRandomArray(numberOfElements);
+        // Step 3: Generate a random array
+//        int[] array = GenerateRandomArray(numberOfElements);
 
-        // You can use this test array instead if needed for debugging
-        // int[] array = {2, 2, 5, 6, 8, 9};
+        // use this test array instead if needed for debugging
+         int[] array = {2, 2, 5, 6, 8, 9};
 
         // Step 4: Display the generated array
         DisplayArray(array);
@@ -33,13 +33,14 @@ public class Main {
 
   
     public static int GetPositiveInteger(Scanner scanner, String message) {
-//kiểm tra đến bao giờ đúng thì dừng lại
+// loop until user enter correct positive integer
         while (true) {
             try {
-                System.out.print(message);
-                int number = Integer.parseInt(scanner.nextLine()); // Regex: check numeric string
+                System.out.println(message);
+// Check if the user entered a number or not
+                int number = Integer.parseInt(scanner.nextLine());
 
-                // number must be greater than 0
+                //If the entered number > 0 then it is valid
                 if (number > 0) {
                     return number;
                 } else {
@@ -56,7 +57,7 @@ public class Main {
         int[] array = new int[length];
         Random random = new Random();
 
-        // Loop: fill each index of array with a random number
+        // Loop through the array and generate random numbers for each element
         for (int i = 0; i < length; i++) {
             array[i] = random.nextInt(length); // Random value in range [0, length - 1]
         }
@@ -74,15 +75,15 @@ public class Main {
         int[] resultIndices = new int[array.length];
         int count = 0;
 
-        // Loop iterate over each element in the array
+    // Loop through the array to compare each element with the input value
         for (int i = 0; i < array.length; i++) {
-            // Condition: check if current element equals the target
+        // Compare the element being considered with the number to be found
             if (array[i] == target) {
                 resultIndices[count++] = i;
             }
         }
 
-        
+     
         return Arrays.copyOf(resultIndices, count);
     }
 
