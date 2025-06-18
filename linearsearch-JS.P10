@@ -33,12 +33,13 @@ public class Main {
 
   
     public static int GetPositiveInteger(Scanner scanner, String message) {
+//kiểm tra đến bao giờ đúng thì dừng lại
         while (true) {
             try {
                 System.out.print(message);
                 int number = Integer.parseInt(scanner.nextLine()); // Regex: check numeric string
 
-                // Condition: number must be greater than 0
+                // number must be greater than 0
                 if (number > 0) {
                     return number;
                 } else {
@@ -73,7 +74,7 @@ public class Main {
         int[] resultIndices = new int[array.length];
         int count = 0;
 
-        // Loop: iterate over each element in the array
+        // Loop iterate over each element in the array
         for (int i = 0; i < array.length; i++) {
             // Condition: check if current element equals the target
             if (array[i] == target) {
@@ -81,12 +82,12 @@ public class Main {
             }
         }
 
-        // Return only the filled portion of resultIndices
+        
         return Arrays.copyOf(resultIndices, count);
     }
 
     static void DisplaySearchResult(int[] indices, int value) {
-        // Condition: check if any index was found
+        //  check if any index was found
         if (indices.length > 0) {
             System.out.println("Found " + value + " at indices: " + Arrays.toString(indices));
         } else {
