@@ -13,7 +13,6 @@ public class FibonacciPrinter {
         int second = 1;
         PrintFiboSequence(total, first, second);
 
-
 //        System.out.println("\n\nDetailed Listing:");
 //        PrintFiboWithIndex(total, first, second, 1);
     }
@@ -25,8 +24,8 @@ public class FibonacciPrinter {
     public static void PrintFiboSequence(int count, int a, int b) {
     // If there are no more numbers left to print, then stop.
         if (count == 0) return;
-
         System.out.print(a);
+
 // If it's not the last number, print a comma.
 if (count > 1) {
             System.out.print(", ");
@@ -35,8 +34,6 @@ if (count > 1) {
     // Recursively call to print the next number: count-1 for remaining, b for current, a+b for next.
        PrintFiboSequence(count - 1, b, a + b);
     }
-
-
 
     public static void PrintFiboWithIndex(int count, int a, int b, int index) {
         // If no more numbers to print, end recursion and show total.
