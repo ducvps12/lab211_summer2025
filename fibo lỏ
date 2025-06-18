@@ -9,9 +9,6 @@ public class FiboPrinter {
         // Step 2: Print 45 Fibonacci numbers inline (starting from 0 and 1)
         printInline(45, 0, 1);
 
-        // Step 3: (no logic, just show sequence)
-
-        // Step 4: Check with index (print again with index to verify)
         printWithIndex(45, 0, 1, 1);
     }
 
@@ -28,7 +25,7 @@ public class FiboPrinter {
 
         System.out.print(a);
 
-        // Condition: if not last, add comma
+        // if not last, add comma
         if (count > 1) {
             System.out.print(", ");
         }
@@ -37,13 +34,13 @@ public class FiboPrinter {
     }
 
     public static void printWithIndex(int count, int a, int b, int index) {
-        // Condition: if finished, show total
+        // if finished, show total
         if (count == 0) {
             System.out.println("Total: " + (index - 1));
             return;
         }
 
-        // Condition: first time call
+        // first time call
         if (index == 1) {
             System.out.println("\nCheck by index:");
         }
