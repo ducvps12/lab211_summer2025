@@ -3,76 +3,53 @@ package fibonacci;
 public class FiboPrinter {
 
     public static void main(String[] args) {
-        // Step 1: Declare variables
-        int n = 45;
-        int a = 0;
-        int b = 1;
-
-        // Step 2: Show program title
+        // Step 1: Display title
         printTitle();
 
-        // Step 3: Print Fibonacci numbers inline (recursively)
-        printInline(n, a, b);
+        // Step 2: Print 45 Fibonacci numbers inline (starting from 0 and 1)
+        printInline(45, 0, 1);
 
-        // Step 4: Print Fibonacci numbers with index (recursively)
-        printWithIndex(n, a, b, 1);
+        // Step 3: (no logic, just show sequence)
+
+        // Step 4: Check with index (print again with index to verify)
+        printWithIndex(45, 0, 1, 1);
     }
 
-    /**
-     * Show the title of the program
-     */
     public static void printTitle() {
-        System.out.println("The 45 Fibonacci numbers are:");
+        System.out.println("Fibonacci Sequence (45 numbers):");
     }
 
-    /**
-     * Recursively print Fibonacci numbers in one line
-     * @param count how many numbers to print
-     * @param a current number
-     * @param b next number
-     */
     public static void printInline(int count, int a, int b) {
-        // stop if no numbers left
+        // Condition: if no numbers left, stop
         if (count == 0) {
-            System.out.println(); // move to new line
+            System.out.println();
             return;
         }
 
-        // Print current number
         System.out.print(a);
 
-        //  if not last number, print comma
+        // Condition: if not last, add comma
         if (count > 1) {
             System.out.print(", ");
         }
 
-        // Recursive call with next pair of numbers
         printInline(count - 1, b, a + b);
     }
 
-    /**
-     * Recursively print Fibonacci numbers with index
-     * @param count how many numbers to print
-     * @param a current number
-     * @param b next number
-     * @param idx current index
-     */
-    public static void printWithIndex(int count, int a, int b, int idx) {
-        // if no numbers left, show total printed
+    public static void printWithIndex(int count, int a, int b, int index) {
+        // Condition: if finished, show total
         if (count == 0) {
-            System.out.println("Total numbers printed: " + (idx - 1));
+            System.out.println("Total: " + (index - 1));
             return;
         }
 
-        // if it's the first time, show section title
-        if (idx == 1) {
-            System.out.println("\nDetailed Fibonacci List:");
+        // Condition: first time call
+        if (index == 1) {
+            System.out.println("\nCheck by index:");
         }
 
-        // Print index and number
-        System.out.println(idx + ": " + a);
+        System.out.println(index + ": " + a);
 
-        // Recursive call with next number and index + 1
-        printWithIndex(count - 1, b, a + b, idx + 1);
+        printWithIndex(count - 1, b, a + b, index + 1);
     }
 }
