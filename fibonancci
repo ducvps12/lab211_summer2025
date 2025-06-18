@@ -18,7 +18,7 @@ public class FibonacciPrinter {
 
 
 //        System.out.println("\n\nDetailed Listing:");
-//        PrintFiboWithIndex(total, first, second, 1);
+//        checkFibonacci(total, first, second, 1);
     }
 
 
@@ -43,7 +43,7 @@ if (count > 1) {
 
 
 
-    public static void PrintFiboWithIndex(int count, int a, int b, int index) {
+    public static void checkFibonacci(int count, int a, int b, int index) {
         // If no more numbers to print, end recursion and show total.
         if (count == 0) {
             System.out.println("Total Fibonacci numbers printed: " + (index - 1));
