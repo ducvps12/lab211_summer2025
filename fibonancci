@@ -26,22 +26,22 @@ public class FibonacciPrinter {
 
 
     public static void PrintFibonacciInline(int count, int a, int b) {
-        // Condition: if no more numbers to print
+    // If there are no more numbers left to print, then stop.
         if (count == 0) return;
 
         System.out.print(a);
-        // Condition: print comma if not the last number
-        if (count > 1) {
+// If it's not the last number, print a comma.
+if (count > 1) {
             System.out.print(", ");
         }
 
-        // Recursive call to print the next number
+    // Recursively call to print the next number: count-1 for remaining, b for current, a+b for next.
         PrintFibonacciInline(count - 1, b, a + b);
     }
 
    
     public static void PrintFibonacciWithIndex(int count, int a, int b, int index) {
-        // Condition: end recursion and display total
+        // If no more numbers to print, end recursion and show total.
         if (count == 0) {
             System.out.println("Total Fibonacci numbers printed: " + (index - 1));
             return;
@@ -49,7 +49,7 @@ public class FibonacciPrinter {
 
         System.out.println(index + ": is number " + a);
 
-        // Recursive call to print the next number
+        // Recursive call to print the next number: decrease count, update a/b, increment index.
         PrintFibonacciWithIndex(count - 1, b, a + b, index + 1);
     }
 }
