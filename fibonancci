@@ -36,7 +36,7 @@ if (count > 1) {
             System.out.print(", ");
         }
 
-    // Recursively call to print the next number: count-1 for remaining, b for current, a+b for next.
+    // Recursively call to print the next number
        PrintFiboSequence(count - 1, b, a + b);
     }
 
@@ -52,8 +52,8 @@ if (count > 1) {
 
         System.out.println(index + ": is number " + a);
 
-        // Recursive call to print the next number: decrease count, update a/b, increment index.
-       PrintFiboWithIndex(count - 1, b, a + b, index + 1);
+        // Recursive call to print the next number
+       checkFibonacci(count - 1, b, a + b, index + 1);
 
 
     }
