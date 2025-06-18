@@ -47,6 +47,6 @@ if (count > 1) {
         System.out.println(index + ": is number " + a);
 
         // Recursive call to print the next number: decrease count, update a/b, increment index.
-       PrintFiboWithIndexcount - 1, b, a + b, index + 1);
+       PrintFiboWithIndex (count - 1, b, a + b, index + 1);
     }
 }
