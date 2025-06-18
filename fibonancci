@@ -4,21 +4,20 @@ package com.mycompany.demofibo;
 public class FibonacciPrinter {
 
     public static void main(String[] args) {
-        // Step 1: display sequence fibonacci
-        displayFibosequence();
+      
 
-        // Step 2: find 45 sequence fibonacci by using recursion method
+        // Step 1: find 45 sequence fibonacci by using recursion method
         int total = 45;
         int first = 0;
         int second = 1;
         PrintFiboSequence(total, first, second);
 
+         // Step 2: display sequence fibonacci
+         displayFibosequence();
+
+
 //        System.out.println("\n\nDetailed Listing:");
 //        PrintFiboWithIndex(total, first, second, 1);
-    }
-
-    public static void  displayFibosequence() {
-        System.out.println("The 45-sequence Fibonacci :");
     }
 
     public static void PrintFiboSequence(int count, int a, int b) {
@@ -35,6 +34,12 @@ if (count > 1) {
        PrintFiboSequence(count - 1, b, a + b);
     }
 
+
+ public static void  displayFibosequence() {
+        System.out.println("The 45-sequence Fibonacci :");
+    }
+
+
     public static void PrintFiboWithIndex(int count, int a, int b, int index) {
         // If no more numbers to print, end recursion and show total.
         if (count == 0) {
@@ -46,5 +51,7 @@ if (count > 1) {
 
         // Recursive call to print the next number: decrease count, update a/b, increment index.
        PrintFiboWithIndex(count - 1, b, a + b, index + 1);
+
+
     }
 }
