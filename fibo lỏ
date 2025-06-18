@@ -7,46 +7,48 @@ public class FibonacciGenerator {
     public static void main(String[] args) {
         ArrayList<Integer> sequence = new ArrayList<>();
 
-        // Step 1: Use recursion to generate the first 45 Fibonacci numbers
+       // Step 1: Generate the first 45 Fibonacci numbers recursively
         GenerateSequence(sequence, 45);
 
-        // Step 2: Show the full Fibonacci sequence
+       // Step 2: Print the entire Fibonacci sequence to the screen
         ShowSequence(sequence);
 
-        // Optional: Display each Fibonacci number with its index
+       // (Optional) Print each Fibonacci number with its position
         DisplayEachElement(sequence);
     }
 
-    // Function: Recursively generate 'limit' Fibonacci numbers
     public static void GenerateSequence(ArrayList<Integer> seq, int limit) {
-        // Condition: Add first two base values
+      // If the array is empty, add the first two numbers 0 and 1
         if (seq.isEmpty()) {
             seq.add(0);
             seq.add(1);
         }
 
-        // Condition: Stop recursion if enough values generated
+       // Stop recursion when required number is reached
         if (seq.size() >= limit) return;
 
-        // Recursive step: add sum of last two numbers
+        // Tính số tiếp theo bằng tổng 2 số cuối và gọi đệ quy tiếp
         int next = seq.get(seq.size() - 1) + seq.get(seq.size() - 2);
         seq.add(next);
         GenerateSequence(seq, limit);
     }
 
-    // Function: Print the entire Fibonacci sequence in one line
     public static void ShowSequence(ArrayList<Integer> seq) {
         System.out.println("Generated Fibonacci sequence:");
+
+       // Loop through each element to print out the sequence of numbers
         for (int i = 0; i < seq.size(); i++) {
             System.out.print(seq.get(i));
-            // Condition: avoid trailing comma
+
+         // If it is not the last element, print an additional comma
             if (i < seq.size() - 1) System.out.print(", ");
         }
+
         System.out.println();
     }
 
-    // Function: Print each number with its index (1-based)
     public static void DisplayEachElement(ArrayList<Integer> seq) {
+    // Loop through each element and print out the corresponding index + value
         for (int i = 0; i < seq.size(); i++) {
             System.out.printf("Element %d: %d%n", i + 1, seq.get(i));
         }
