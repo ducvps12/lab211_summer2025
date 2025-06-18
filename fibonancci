@@ -10,28 +10,18 @@ public class FibonacciPrinter {
         int total = 45;
         int first = 0;
         int second = 1;
-        PrintFibonacciInline(total, first, second);
+        PrintFiboSequence(total, first, second);
 
-//        // Step 3: Print Fibonacci numbers with index
+
 //        System.out.println("\n\nDetailed Listing:");
-//        PrintFibonacciWithIndex(total, first, second, 1);
+//        PrintFiboWithIndex(total, first, second, 1);
     }
 
-    /**
-     * Display the title of the program
-     */
     public static void displayTitle() {
         System.out.println("The 45-sequence Fibonacci :");
     }
 
-/**
-     * Recursively print the first 'count' Fibonacci numbers inline
-     * @param count number of Fibonacci numbers left to print
-     * @param a first number
-     * @param b second number
-     */
-
-    public static void PrintFibonacciInline(int count, int a, int b) {
+    public static void PrintFiboSequence(int count, int a, int b) {
     // If there are no more numbers left to print, then stop.
         if (count == 0) return;
 
@@ -42,18 +32,12 @@ if (count > 1) {
         }
 
     // Recursively call to print the next number: count-1 for remaining, b for current, a+b for next.
-        PrintFibonacciInline(count - 1, b, a + b);
+       PrintFiboSequence(count - 1, b, a + b);
     }
 
-    /**
-     * Recursively print each Fibonacci number with index and final count
-     * @param count number of Fibonacci numbers left to print
-     * @param a first number
-     * @param b second number
-     * @param index current index (starting from 1)
-     */
 
-    public static void PrintFibonacciWithIndex(int count, int a, int b, int index) {
+
+    public static void PrintFiboWithIndex(int count, int a, int b, int index) {
         // If no more numbers to print, end recursion and show total.
         if (count == 0) {
             System.out.println("Total Fibonacci numbers printed: " + (index - 1));
@@ -63,6 +47,6 @@ if (count > 1) {
         System.out.println(index + ": is number " + a);
 
         // Recursive call to print the next number: decrease count, update a/b, increment index.
-        PrintFibonacciWithIndex(count - 1, b, a + b, index + 1);
+       PrintFiboWithIndexcount - 1, b, a + b, index + 1);
     }
 }
