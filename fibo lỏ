@@ -1,52 +1,54 @@
 package fibonacci;
 
-public class FiboPrinter {
+import java.util.ArrayList;
+
+public class FibonacciGenerator {
 
     public static void main(String[] args) {
-        // Step 1: Display title
-        printTitle();
+        ArrayList<Integer> sequence = new ArrayList<>();
 
-        // Step 2: Print 45 Fibonacci numbers inline (starting from 0 and 1)
-        printInline(45, 0, 1);
+        // Step 1: Use recursion to generate the first 45 Fibonacci numbers
+        GenerateSequence(sequence, 45);
 
-        printWithIndex(45, 0, 1, 1);
+        // Step 2: Show the full Fibonacci sequence
+        ShowSequence(sequence);
+
+        // Optional: Display each Fibonacci number with its index
+        DisplayEachElement(sequence);
     }
 
-    public static void printTitle() {
-        System.out.println("Fibonacci Sequence (45 numbers):");
+    // Function: Recursively generate 'limit' Fibonacci numbers
+    public static void GenerateSequence(ArrayList<Integer> seq, int limit) {
+        // Condition: Add first two base values
+        if (seq.isEmpty()) {
+            seq.add(0);
+            seq.add(1);
+        }
+
+        // Condition: Stop recursion if enough values generated
+        if (seq.size() >= limit) return;
+
+        // Recursive step: add sum of last two numbers
+        int next = seq.get(seq.size() - 1) + seq.get(seq.size() - 2);
+        seq.add(next);
+        GenerateSequence(seq, limit);
     }
 
-    public static void printInline(int count, int a, int b) {
-        // Condition: if no numbers left, stop
-        if (count == 0) {
-            System.out.println();
-            return;
+    // Function: Print the entire Fibonacci sequence in one line
+    public static void ShowSequence(ArrayList<Integer> seq) {
+        System.out.println("Generated Fibonacci sequence:");
+        for (int i = 0; i < seq.size(); i++) {
+            System.out.print(seq.get(i));
+            // Condition: avoid trailing comma
+            if (i < seq.size() - 1) System.out.print(", ");
         }
-
-        System.out.print(a);
-
-        // if not last, add comma
-        if (count > 1) {
-            System.out.print(", ");
-        }
-
-        printInline(count - 1, b, a + b);
+        System.out.println();
     }
 
-    public static void printWithIndex(int count, int a, int b, int index) {
-        // if finished, show total
-        if (count == 0) {
-            System.out.println("Total: " + (index - 1));
-            return;
+    // Function: Print each number with its index (1-based)
+    public static void DisplayEachElement(ArrayList<Integer> seq) {
+        for (int i = 0; i < seq.size(); i++) {
+            System.out.printf("Element %d: %d%n", i + 1, seq.get(i));
         }
-
-        // first time call
-        if (index == 1) {
-            System.out.println("\nCheck by index:");
-        }
-
-        System.out.println(index + ": " + a);
-
-        printWithIndex(count - 1, b, a + b, index + 1);
     }
 }
