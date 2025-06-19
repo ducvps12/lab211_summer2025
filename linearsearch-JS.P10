@@ -10,13 +10,13 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // Step 1: Enter the number of array elements
-        int numberOfElements = GetPositiveInteger(scanner,  "Enter number of array: ");
+        int inputElement = getPositiveInteger(scanner,  "Enter number of array: ");
 
         // Step 2: Input value want to search
-        int searchValue = GetPositiveInteger(scanner, "Enter search value: ");
+        int searchValue = getPositiveInteger(scanner, "Enter search value: ");
 
         // Step 3: Generate a random array
-//        int[] array = GenerateRandomArray(numberOfElements);
+//        int[] array = generateRandomArr(inputElement);
 
         // use this test array instead if needed for debugging
          int[] array = {2, 2, 5, 6, 8, 9};
@@ -32,7 +32,7 @@ public class Main {
     }
 
   
-    public static int GetPositiveInteger(Scanner scanner, String message) {
+    public static int getPositiveInteger(Scanner scanner, String message) {
 // loop until user enter correct positive integer
         while (true) {
             try {
@@ -53,7 +53,7 @@ public class Main {
     }
 
    
-    public static int[] GenerateRandomArray(int length) {
+    public static int[] generateRandomArr(int length) {
         int[] array = new int[length];
         Random random = new Random();
 
