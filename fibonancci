@@ -27,6 +27,13 @@ public class FibonacciPrinter {
     }
 
     public static void PrintFiboSequence(int count, int a, int b) {
+
+
+// if this is the first call, print heading
+//   if (count == 45) {
+//    System.out.println("The 45-sequence Fibonacci: ");
+//}
+
     // If there are no more numbers left to print, then stop.
         if (count == 0) return;
         System.out.print(a);
