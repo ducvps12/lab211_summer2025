@@ -1,68 +1,55 @@
-package com.mycompany.demofibo;
+package com.mycompany.demofibo2;
 
-public class FibonacciPrinter {
+import java.util.ArrayList;
+        
+public class Main {
 
     public static void main(String[] args) {
-        // Step 1: Display the title of the program
-        displayTitle();
+        ArrayList<Integer> fibonacciList = new ArrayList<>();
 
-        // Step 2: Print Fibonacci numbers inline
-        int total = 45;
-        int first = 0;
-        int second = 1;
-        PrintFibonacciInline(total, first, second);
+        // Step 1: generate 45 sequence Fibonacci numbers by recursion
+        generateFibonacci(fibonacciList,45);
 
-//        // Step 3: Print Fibonacci numbers with index
-//        System.out.println("\n\nDetailed Listing:");
-//        PrintFibonacciWithIndex(total, first, second, 1);
+        // Step 2: Print 45 sequence Fibonacci 
+        PrintFibonacc(fibonacciList);
+
+        DisplayEachElement(fibonacciList);
     }
 
-    /**
-     * Display the title of the program
-     */
-    public static void displayTitle() {
-        System.out.println("The 45-sequence Fibonacci :");
-    }
-
-/**
-     * Recursively print the first 'count' Fibonacci numbers inline
-     * @param count number of Fibonacci numbers left to print
-     * @param a first number
-     * @param b second number
-     */
-
-    public static void PrintFibonacciInline(int count, int a, int b) {
-    // If there are no more numbers left to print, then stop.
-        if (count == 0) return;
-
-        System.out.print(a);
-// If it's not the last number, print a comma.
-if (count > 1) {
-            System.out.print(", ");
+    public static void generateFibonacci(ArrayList<Integer> list, int size) {
+        // check if the list is empty to initialize firt two numbers
+        if(list.isEmpty()){
+            list.add(0);
+            list.add(1);
         }
-
-    // Recursively call to print the next number: count-1 for remaining, b for current, a+b for next.
-        PrintFibonacciInline(count - 1, b, a + b);
+// loop to generate fibonacci numbers until reaching the desired size
+      while(list.size() < size){
+          int last = list.get(list.size()-1);
+          int secondLast = list.get(list.size()-2);
+          list.add(last +secondLast);
+      }
+        
     }
-
-    /**
-     * Recursively print each Fibonacci number with index and final count
-     * @param count number of Fibonacci numbers left to print
-     * @param a first number
-     * @param b second number
-     * @param index current index (starting from 1)
-     */
-
-    public static void PrintFibonacciWithIndex(int count, int a, int b, int index) {
-        // If no more numbers to print, end recursion and show total.
-        if (count == 0) {
-            System.out.println("Total Fibonacci numbers printed: " + (index - 1));
-            return;
+    
+    public static void PrintFibonacc(ArrayList<Integer> list){
+        System.out.println("The 45 sequence fibonacci:");
+        //loop to print each number separated by comma
+        for(int i =0; i<list.size();i++){
+           System.out.print(list.get(i));
+           //add comma for all elements except the last one
+           if( i< list.size()-1){
+               System.out.print(", " );
+           } else {
+               System.out.println();
+           }
         }
-
-        System.out.println(index + ": is number " + a);
-
-        // Recursive call to print the next number: decrease count, update a/b, increment index.
-        PrintFibonacciWithIndex(count - 1, b, a + b, index + 1);
+        
     }
+
+   public static void DisplayEachElement(ArrayList<Integer> list){
+       //loop go through each element and print with index
+       for(int i =0; i<list.size();i++){
+           System.out.println( (i+1)+": "  + list.get(i) );
+       }
+   }
 }
