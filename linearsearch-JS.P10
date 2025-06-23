@@ -90,7 +90,7 @@ public class Main {
     static void DisplaySearchResult(int[] indices, int value) {
         //  check if any index was found
         if (indices.length > 0) {
-            System.out.println("Found " + value + " at indices: " + Arrays.toString(indices));
+            System.out.println("Found " + value + " at index: " + indices[010]);
         } else {
             System.out.println("Value " + value + " not found in array.");
         }
