@@ -19,7 +19,7 @@ public class Main {
 //        int[] array = generateRandomArr(inputElement);
 
         // use this test array instead if needed for debugging
-         int[] array = {2, 2, 5, 6, 8, 9};
+         int[] array = {2, 2, 5, 6,9,9, 8, 9,8};
 
         // Step 4: Display the generated array
         DisplayArray(array);
@@ -89,7 +89,16 @@ public class Main {
     static void DisplaySearchResult(int[] indices, int value) {
         //  check if any index was found
         if (indices.length > 0) {
-            System.out.println("Found " + value + " at index: " + indices[010]);
+            System.out.print("Found " + value + " at index: " );
+            for (int i = 0; i < indices.length; i++) {
+            System.out.print(indices[i]);
+            if (i < indices.length - 1) {
+                System.out.print(", ");
+                        
+                    }
+        }
+        System.out.println(); // newline      
+            
         } else {
             System.out.println("Value " + value + " not found in array.");
         }
