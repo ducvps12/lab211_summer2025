@@ -33,14 +33,13 @@ public class Main {
 
   
     public static int getPositiveInteger(Scanner scanner, String message) {
-// loop until user enter correct positive integer
+// loop infinity
         while (true) {
             try {
                 System.out.println(message);
-// Check if the user entered a number or not
                 int number = Integer.parseInt(scanner.nextLine());
 
-                //If the entered number > 0 then it is valid
+                // check if the entered number > 0 
                 if (number > 0) {
                     return number;
                 } else {
@@ -57,9 +56,9 @@ public class Main {
         int[] array = new int[length];
         Random random = new Random();
 
-        // Loop through the array and generate random numbers for each element
+        // Loop through the array ( and generate random numbers for each element)
         for (int i = 0; i < length; i++) {
-            array[i] = random.nextInt(length); // Random value in range [0, length - 1]
+            array[i] = random.nextInt(length);
         }
 
         return array;
@@ -75,7 +74,7 @@ public class Main {
         int[] resultIndices = new int[array.length];
         int count = 0;
 
-    // Loop through the array to compare each element with the input value
+    // Loop through the array (to compare each element with the input value)
         for (int i = 0; i < array.length; i++) {
         // Compare the element being considered with the number to be found
             if (array[i] == target) {
