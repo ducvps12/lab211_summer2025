@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> fibonacciList = new ArrayList<>();
 
-        // Step 1: generate 45 sequence Fibonacci numbers by recursion
+        // Step 1: generate 45 sequence Fibonacci numbers by using recursion medthod
         generateFibonacci(fibonacciList,45);
 
         // Step 2: Print 45 sequence Fibonacci 
