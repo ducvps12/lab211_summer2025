@@ -1,0 +1,36 @@
+package matrixcalculator;
+
+/**
+ * This is the main entry point of the matrix calculator program.
+ */
+public class Main {
+    public static void main(String[] args) {
+        MatrixManager manager = new MatrixManager();
+        MatrixOperator operator = new MatrixOperator();
+        InputHandler input = new InputHandler();
+
+        while (true) {
+            manager.displayMenu();
+            int choice = input.getInt("Your choice: ", 1, 4);
+
+            if (choice == 4) {
+                System.out.println("Program exited. Goodbye!");
+                break;
+            }
+
+            manager.displayOperationTitle(choice);
+
+            int[][] matrix1 = manager.getMatrix("Matrix 1");
+            int[][] matrix2 = manager.getMatrix2(matrix1, choice);
+            int[][] result = null;
+
+            switch (choice) {
+                case 1 -> result = operator.additionMatrix(matrix1, matrix2);
+                case 2 -> result = operator.subtractionMatrix(matrix1, matrix2);
+                case 3 -> result = operator.multiplicationMatrix(matrix1, matrix2);
+            }
+
+            manager.displayResult(matrix1, matrix2, result, choice);
+        }
+    }
+}
