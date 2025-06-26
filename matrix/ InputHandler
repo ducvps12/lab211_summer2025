@@ -1,0 +1,56 @@
+package matrixcalculator;
+
+import java.util.Scanner;
+
+/**
+ * This class is responsible for validating and collecting user inputs.
+ */
+public class InputHandler {
+    Scanner sc = new Scanner(System.in);
+
+    // Get an integer within range
+    public int getInt(String msg, int min, int max) {
+        while (true) {
+            System.out.print(msg);
+            String input = sc.nextLine().trim();
+
+            // Condition: input not empty
+            if (input.isEmpty()) {
+                System.out.println("Input can't be empty.");
+                continue;
+            }
+
+            try {
+                int value = Integer.parseInt(input);
+                // Condition: must be within range
+                if (value >= min && value <= max) {
+                    return value;
+                } else {
+                    System.out.println("Input must be between " + min + " and " + max);
+                }
+            } catch (NumberFormatException e) {
+                // Exception: invalid number format
+                System.out.println("Input must be a valid integer.");
+            }
+        }
+    }
+
+    // Get a matrix element (any integer)
+    public int getElement(String msg) {
+        while (true) {
+            System.out.print(msg);
+            String input = sc.nextLine().trim();
+
+            if (input.isEmpty()) {
+                System.out.println("Input can't be empty.");
+                continue;
+            }
+
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Matrix value must be a number.");
+            }
+        }
+    }
+}
