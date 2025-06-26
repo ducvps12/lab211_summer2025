@@ -1,0 +1,110 @@
+package matrixcalculator;
+
+/**
+ * This class handles matrix input, output, and display logic.
+ */
+public class MatrixManager {
+    InputHandler input = new InputHandler();
+
+    // Show main menu
+    public void displayMenu() {
+        System.out.println("========= Matrix Calculator =========");
+        System.out.println("1. Addition Matrix");
+        System.out.println("2. Subtraction Matrix");
+        System.out.println("3. Multiplication Matrix");
+        System.out.println("4. Exit");
+    }
+
+    // Read matrix from user
+    public int[][] getMatrix(String label) {
+        int rows = input.getInt("Enter rows for " + label + ": ", 1, Integer.MAX_VALUE);
+        int cols = input.getInt("Enter columns for " + label + ": ", 1, Integer.MAX_VALUE);
+        int[][] matrix = new int[rows][cols];
+
+        // Loop: input matrix values
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrix[i][j] = input.getElement(String.format("Enter %s[%d][%d]: ", label, i + 1, j + 1));
+            }
+        }
+
+        return matrix;
+    }
+
+    // Validate and get second matrix depending on operation
+    public int[][] getMatrix2(int[][] matrix1, int operation) {
+        int rows1 = matrix1.length;
+        int cols1 = matrix1[0].length;
+        int rows2, cols2;
+
+        if (operation == 3) {
+            // Multiplication requires col1 == row2
+            while (true) {
+                rows2 = input.getInt("Enter rows for Matrix 2: ", 1, Integer.MAX_VALUE);
+                if (rows2 != cols1) {
+                    System.out.println("Rows of Matrix 2 must match columns of Matrix 1.");
+                } else break;
+            }
+            cols2 = input.getInt("Enter columns for Matrix 2: ", 1, Integer.MAX_VALUE);
+        } else {
+            // Addition/Subtraction requires same size
+            while (true) {
+                rows2 = input.getInt("Enter rows for Matrix 2: ", 1, Integer.MAX_VALUE);
+                if (rows2 != rows1) {
+                    System.out.println("Matrix 2 must have same rows as Matrix 1.");
+                } else break;
+            }
+
+            while (true) {
+                cols2 = input.getInt("Enter columns for Matrix 2: ", 1, Integer.MAX_VALUE);
+                if (cols2 != cols1) {
+                    System.out.println("Matrix 2 must have same columns as Matrix 1.");
+                } else break;
+            }
+        }
+
+        int[][] matrix = new int[rows2][cols2];
+        for (int i = 0; i < rows2; i++) {
+            for (int j = 0; j < cols2; j++) {
+                matrix[i][j] = input.getElement(String.format("Enter Matrix2[%d][%d]: ", i + 1, j + 1));
+            }
+        }
+
+        return matrix;
+    }
+
+    // Display matrix content
+    public void displayMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int val : row) {
+                System.out.printf("[%d]", val);
+            }
+            System.out.println();
+        }
+    }
+
+    // Show result of operation
+    public void displayResult(int[][] m1, int[][] m2, int[][] res, int operation) {
+        System.out.println("--------- Result ---------");
+        displayMatrix(m1);
+
+        switch (operation) {
+            case 1 -> System.out.println("+");
+            case 2 -> System.out.println("-");
+            case 3 -> System.out.println("*");
+        }
+
+        displayMatrix(m2);
+        System.out.println("=");
+        displayMatrix(res);
+    }
+
+    // Show operation header
+    public void displayOperationTitle(int choice) {
+        switch (choice) {
+            case 1 -> System.out.println("------ Addition Matrix ------");
+            case 2 -> System.out.println("------ Subtraction Matrix ------");
+            case 3 -> System.out.println("------ Multiplication Matrix ------");
+        }
+    }
+}
