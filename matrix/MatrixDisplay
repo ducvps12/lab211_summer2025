@@ -1,0 +1,13 @@
+package matrixcalculator;
+
+public class MatrixDisplay {
+    public void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int val : row) {
+                System.out.printf("[%d]", val);
+            }
+            System.out.println();
+        }
+    }
+}
+
