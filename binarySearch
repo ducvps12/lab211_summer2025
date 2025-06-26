@@ -7,161 +7,146 @@ public class BinarySearchProgram {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Step 1: Enter number of elements in array
-        int arraySize = GetPositiveInteger(scanner, "Enter number of array: ");
+        // Step 1: Nhập số phần tử mảng
+        int arraySize = getPositiveInteger(scanner, "Enter number of array: ");
 
-        // Step 2: Generate sorted random array
-        int[] array = GenerateSortedRandomArray(arraySize);
-        // int[] array = {1, 1, 1, 1, 3, 4, 6, 8, 9, 9}; // For fixed test
+        // Step 2: Sinh mảng random đã sắp xếp
+        int[] array = generateSortedRandomArray(arraySize);
+        displayArray(array);
 
-        // Step 3: Display generated array
-        DisplayArray(array);
+        // Step 3: Thực hiện Binary Search với giá trị người dùng nhập
+        int searchValue = getPositiveInteger(scanner, "Enter value to search: ");
+        int index = doBinarySearch(array, searchValue);
+        displaySearchResult(index, array, searchValue);
 
-        // Step 4: Perform binary search
-        int searchValue = GetPositiveInteger(scanner, "Enter value to search: ");
-        int index = DoBinarySearch(array, searchValue);
-        DisplaySearchResult(index, array, searchValue);
-
-        // Step 5: Run manual test cases
-        RunInteractiveTestCases(scanner);
+        // Step 4: Chạy test case mô phỏng theo hình minh họa
+        runManualTest(scanner);
 
         scanner.close();
     }
 
-    public static int GetPositiveInteger(Scanner scanner, String message) {
+    public static int getPositiveInteger(Scanner scanner, String message) {
         int number;
         while (true) {
-            System.out.println(message);
+            System.out.print(message);
             String input = scanner.nextLine().trim();
 
-            // Condition: input is empty
             if (input.isEmpty()) {
-                System.out.println("Invalid input! Input cannot be empty.");
+                System.out.println("Input cannot be empty!");
                 continue;
             }
 
             try {
                 number = Integer.parseInt(input);
-                if (number > 0) {
-                    return number;
-                } else {
-                    System.out.println("Invalid input! Please enter a positive integer greater than 0.");
-                }
+                if (number > 0) return number;
+                else System.out.println("Please enter a positive integer greater than 0.");
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input! Please enter a valid integer.");
+                System.out.println("Invalid number, please try again.");
             }
         }
     }
 
-    public static int[] GenerateSortedRandomArray(int size) {
+    public static int[] generateSortedRandomArray(int size) {
         int[] array = new int[size];
         Random random = new Random();
 
-        // Loop: generate random integers
         for (int i = 0; i < size; i++) {
-            array[i] = random.nextInt(301) - 100; // -100 to 200
+            array[i] = random.nextInt(301) - 100; // Tạo số trong khoảng -100 đến 200
         }
 
-        Arrays.sort(array); // Sort array before binary search
+        Arrays.sort(array);
         return array;
     }
 
-    public static void DisplayArray(int[] array) {
+    public static void displayArray(int[] array) {
         System.out.println("Sorted array: " + Arrays.toString(array));
     }
 
-    public static int DoBinarySearch(int[] array, int binarySearch) {
-        int left = 0;
-        int right = array.length - 1;
+    public static int doBinarySearch(int[] array, int searchValue) {
+        int left = 0, right = array.length - 1;
 
-        // Loop: binary search logic
         while (left <= right) {
             int mid = left + (right - left) / 2;
 
-            if (array[mid] == binarySearch) return mid;
-            if (array[mid] < binarySearch) left = mid + 1;
+            if (array[mid] == searchValue) return mid;
+            if (array[mid] < searchValue) left = mid + 1;
             else right = mid - 1;
         }
-
-        return -1; // Not found
+        return -1;
     }
 
-    public static void DisplaySearchResult(int index, int[] array, int binarySearch) {
+    public static void displaySearchResult(int index, int[] array, int searchValue) {
         if (index != -1) {
-            System.out.println("Value " + binarySearch + " found at index: " + index);
+            System.out.println("Value " + searchValue + " found at index: " + index);
         } else {
-            System.out.println("Value " + binarySearch + " not found in the array.");
+            System.out.println("Value " + searchValue + " not found in the array.");
         }
     }
 
-    public static void RunInteractiveTestCases(Scanner scanner) {
+    // === Phần test thủ công giống ví dụ hình bạn đưa ===
+    public static void runManualTest(Scanner scanner) {
         int[] testArray = {-1, 5, 6, 18, 19, 25, 46, 78, 102, 114};
-
-        System.out.println("\n==== Binary Search Test Mode ====");
-        DisplayArray(testArray);
+        System.out.println("\n==== Manual Binary Search Test ====");
+        displayArray(testArray);
 
         while (true) {
             System.out.print("\nEnter value to test (or type 'exit' to quit): ");
             String input = scanner.nextLine().trim();
 
-            // Condition: exit command
             if (input.equalsIgnoreCase("exit")) {
-                System.out.println("Exiting test mode.");
+                System.out.println("Exiting manual test mode.");
                 break;
             }
 
             try {
                 int value = Integer.parseInt(input);
-                ShowBinarySearchSteps(testArray, value);
+                showBinarySearchSteps(testArray, value);
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a valid integer or 'exit'.");
             }
         }
     }
 
-    public static void ShowBinarySearchSteps(int[] array, int binarySearch) {
-        int left = 0;
-        int right = array.length - 1;
+    public static void showBinarySearchSteps(int[] array, int searchValue) {
+        int left = 0, right = array.length - 1;
         int step = 1;
 
-        // Loop: simulate binary search
         while (left <= right) {
             int mid = left + (right - left) / 2;
             int midValue = array[mid];
 
             System.out.print("Step " + step + " (middle element is " + midValue);
-            if (midValue == binarySearch) {
-                System.out.print(" == " + binarySearch + "): ");
-            } else if (midValue < binarySearch) {
-                System.out.print(" < " + binarySearch + "): ");
+
+            if (midValue == searchValue) {
+                System.out.print(" == " + searchValue + "): ");
+            } else if (midValue < searchValue) {
+                System.out.print(" < " + searchValue + "): ");
             } else {
-                System.out.print(" > " + binarySearch + "): ");
+                System.out.print(" > " + searchValue + "): ");
             }
 
-            // Highlight mid element
+            // In mảng với phần tử giữa được đánh dấu
             for (int i = 0; i < array.length; i++) {
                 if (i == mid) {
-                    System.out.print("[" + array[i] + "] ");
+                    System.out.print("\033[1;31m" + array[i] + "\033[0m "); // In đỏ phần tử giữa
                 } else {
                     System.out.print(array[i] + " ");
                 }
             }
             System.out.println();
 
-            if (midValue == binarySearch) {
+            if (midValue == searchValue) {
                 System.out.println("=> Found at index: " + mid + "\n");
                 return;
             }
 
-            if (midValue < binarySearch) {
+            if (midValue < searchValue) {
                 left = mid + 1;
             } else {
                 right = mid - 1;
             }
-
             step++;
         }
-
         System.out.println("=> Searched value is absent\n");
     }
 }
