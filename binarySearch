@@ -11,7 +11,7 @@ public class BinarySearchProgram {
         int arraySize = GetPositiveInteger(scanner, "Enter number of array: ");
 
         // Step 2: Enter value to search
-        int target = GetPositiveInteger(scanner, "Enter search value: ");
+        int binarySearch = GetPositiveInteger(scanner, "Enter search value: ");
 
         // Step 3: Generate sorted array
 //        int[] array = GenerateSortedRandomArray(arraySize);
@@ -23,12 +23,11 @@ public class BinarySearchProgram {
         DisplayArray(array);
 
         // Step 5: Perform binary search
-        int index = DoBinarySearch(array, target);
+        int index = DoBinarySearch(array, binarySearch);
 
         // Step 6: Display result
-        DisplaySearchResult(index, array, target);
+        DisplaySearchResult(index, array, binarySearch);
 
-        // Step 7: Run test examples
         RunTestExamples();
 
         scanner.close();
@@ -37,27 +36,30 @@ public class BinarySearchProgram {
     public static int GetPositiveInteger(Scanner scanner, String message) {
         int number;
 
-        // Loop: keep asking until valid integer > 0
+        // loop infinity
         while (true) {
             System.out.println(message);
+            String input = scanner.nextLine().trim();
+            
+            //check if input empty
+            if (input.isEmpty()) {
+            System.out.println("Invalid input! Input cannot be empty.");
+            continue;
+        }
 
-            // Check if input is an integer
-            if (scanner.hasNextInt()) {
-                number = scanner.nextInt();
-                scanner.nextLine(); // Clear buffer
-
-                // Check if number is greater than 0
-                if (number > 0) {
-                    return number;
-                } else {
-                    System.out.println("Invalid input! Please enter a positive integer greater than 0.");
-                }
+           try {
+            number = Integer.parseInt(input);
+            // check if the entered number > 0 
+            if (number > 0) {
+                return number; 
             } else {
-                System.out.println("Invalid input! Please enter a positive integer.");
-                scanner.nextLine(); // Skip invalid input
+                System.out.println("Invalid input! Please enter a positive integer greater than 0.");
             }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input! Please enter a valid integer.");
         }
     }
+}
 
     public static int[] GenerateSortedRandomArray(int size) {
         int[] array = new int[size];
@@ -78,7 +80,7 @@ public class BinarySearchProgram {
         System.out.println("Sorted array: " + Arrays.toString(array));
     }
 
-    public static int DoBinarySearch(int[] array, int target) {
+    public static int DoBinarySearch(int[] array, int binarySearch) {
         int left = 0;
         int right = array.length - 1;
 
@@ -87,16 +89,16 @@ public class BinarySearchProgram {
             // Calculate middle index
             int mid = left + (right - left) / 2;
 
-            // Check if middle value matches target
-            if (array[mid] == target) {
+            // Check if middle value matches binarySearch
+            if (array[mid] == binarySearch) {
                 return mid;
             }
 
-            // If middle value less than target, search right half
-            if (array[mid] < target) {
+            // If middle value less than binarySearch, search right half
+            if (array[mid] < binarySearch) {
                 left = mid + 1;
             } else {
-                // If middle value greater than target, search left half
+                // If middle value greater than binarySearch, search left half
                 right = mid - 1;
             }
         }
@@ -105,13 +107,13 @@ public class BinarySearchProgram {
         return -1;
     }
 
-    public static void DisplaySearchResult(int index, int[] array, int target) {
-        // Check if target found
+    public static void DisplaySearchResult(int index, int[] array, int binarySearch) {
+        // Check if binarySearch found
         if (index != -1) {
-            System.out.println("Value " + target + " found at index: " + index);
+            System.out.println("Value " + binarySearch + " found at index: " + index);
         } else {
             // If not found
-            System.out.println("Value " + target + " not found in the array.");
+            System.out.println("Value " + binarySearch + " not found in the array.");
         }
     }
 
@@ -127,7 +129,7 @@ public class BinarySearchProgram {
         ShowBinarySearchSteps(sampleArray, 103);
     }
 
-    public static void ShowBinarySearchSteps(int[] array, int target) {
+    public static void ShowBinarySearchSteps(int[] array, int binarySearch) {
         int left = 0;
         int right = array.length - 1;
         int step = 1;
@@ -142,12 +144,12 @@ public class BinarySearchProgram {
             System.out.print("Step " + step + " (middle element is " + midValue);
 
             // Display comparison
-            if (midValue == target) {
-                System.out.print(" == " + target + "): ");
-            } else if (midValue < target) {
-                System.out.print(" < " + target + "): ");
+            if (midValue == binarySearch) {
+                System.out.print(" == " + binarySearch + "): ");
+            } else if (midValue < binarySearch) {
+                System.out.print(" < " + binarySearch + "): ");
             } else {
-                System.out.print(" > " + target + "): ");
+                System.out.print(" > " + binarySearch + "): ");
             }
 
             // Print array with middle element highlighted
@@ -161,13 +163,13 @@ public class BinarySearchProgram {
             System.out.println();
 
             // If found, display result and exit
-            if (midValue == target) {
+            if (midValue == binarySearch) {
                 System.out.println("=> Found at index: " + mid + "\n");
                 return;
             }
 
             // Adjust search bounds
-            if (midValue < target) {
+            if (midValue < binarySearch) {
                 left = mid + 1;
             } else {
                 right = mid - 1;
