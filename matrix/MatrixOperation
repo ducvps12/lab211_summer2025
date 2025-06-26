@@ -1,47 +1,58 @@
-
 package matrixcalculator;
 
-public class MatrixOperation {
+/**
+ * This class contains core logic to operate on matrices.
+ */
+public class MatrixOperator {
 
+    // Perform addition of two matrices
     public int[][] additionMatrix(int[][] matrix1, int[][] matrix2) {
-        int row = matrix1.length;
-        int col = matrix1[0].length;
-        int[][] result = new int[row][col];
+        int rows = matrix1.length;
+        int cols = matrix1[0].length;
+        int[][] result = new int[rows][cols];
 
-        // Loop: element-wise addition
-        for (int i = 0; i < row; i++)
-            for (int j = 0; j < col; j++)
+        // Loop: Add each element at position [i][j]
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
                 result[i][j] = matrix1[i][j] + matrix2[i][j];
-
-        return result;
-    }
-
-    public int[][] subtractionMatrix(int[][] matrix1, int[][] matrix2) {
-        int row = matrix1.length;
-        int col = matrix1[0].length;
-        int[][] result = new int[row][col];
-
-        // Loop: element-wise subtraction
-        for (int i = 0; i < row; i++)
-            for (int j = 0; j < col; j++)
-                result[i][j] = matrix1[i][j] - matrix2[i][j];
-
-        return result;
-    }
-
-    public int[][] multiplicationMatrix(int[][] matrix1, int[][] matrix2) {
-        int row = matrix1.length;
-        int col = matrix2[0].length;
-        int common = matrix1[0].length;
-        int[][] result = new int[row][col];
-
-        // Loop: matrix multiplication rule
-        for (int i = 0; i < row; i++)
-            for (int j = 0; j < col; j++) {
-                result[i][j] = 0;
-                for (int k = 0; k < common; k++)
-                    result[i][j] += matrix1[i][k] * matrix2[k][j];
             }
+        }
+
+        return result;
+    }
+
+    // Perform subtraction of two matrices
+    public int[][] subtractionMatrix(int[][] matrix1, int[][] matrix2) {
+        int rows = matrix1.length;
+        int cols = matrix1[0].length;
+        int[][] result = new int[rows][cols];
+
+        // Loop: Subtract each element at position [i][j]
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result[i][j] = matrix1[i][j] - matrix2[i][j];
+            }
+        }
+
+        return result;
+    }
+
+    // Perform multiplication of two matrices
+    public int[][] multiplicationMatrix(int[][] matrix1, int[][] matrix2) {
+        int rowA = matrix1.length;
+        int colA = matrix1[0].length;
+        int colB = matrix2[0].length;
+        int[][] result = new int[rowA][colB];
+
+        // Loop: Matrix multiplication algorithm
+        for (int i = 0; i < rowA; i++) {
+            for (int j = 0; j < colB; j++) {
+                result[i][j] = 0;
+                for (int k = 0; k < colA; k++) {
+                    result[i][j] += matrix1[i][k] * matrix2[k][j];
+                }
+            }
+        }
 
         return result;
     }
