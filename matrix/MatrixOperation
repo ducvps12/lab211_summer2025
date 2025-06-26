@@ -1,0 +1,48 @@
+
+package matrixcalculator;
+
+public class MatrixOperation {
+
+    public int[][] additionMatrix(int[][] matrix1, int[][] matrix2) {
+        int row = matrix1.length;
+        int col = matrix1[0].length;
+        int[][] result = new int[row][col];
+
+        // Loop: element-wise addition
+        for (int i = 0; i < row; i++)
+            for (int j = 0; j < col; j++)
+                result[i][j] = matrix1[i][j] + matrix2[i][j];
+
+        return result;
+    }
+
+    public int[][] subtractionMatrix(int[][] matrix1, int[][] matrix2) {
+        int row = matrix1.length;
+        int col = matrix1[0].length;
+        int[][] result = new int[row][col];
+
+        // Loop: element-wise subtraction
+        for (int i = 0; i < row; i++)
+            for (int j = 0; j < col; j++)
+                result[i][j] = matrix1[i][j] - matrix2[i][j];
+
+        return result;
+    }
+
+    public int[][] multiplicationMatrix(int[][] matrix1, int[][] matrix2) {
+        int row = matrix1.length;
+        int col = matrix2[0].length;
+        int common = matrix1[0].length;
+        int[][] result = new int[row][col];
+
+        // Loop: matrix multiplication rule
+        for (int i = 0; i < row; i++)
+            for (int j = 0; j < col; j++) {
+                result[i][j] = 0;
+                for (int k = 0; k < common; k++)
+                    result[i][j] += matrix1[i][k] * matrix2[k][j];
+            }
+
+        return result;
+    }
+}
