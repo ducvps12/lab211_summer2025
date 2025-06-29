@@ -1,0 +1,51 @@
+package calculateshape;
+
+public class Rectangle extends Shape {
+    private double rectangleWidth;
+    private double rectangleLength;
+
+    public Rectangle() {
+        this.rectangleWidth = 0.0;
+        this.rectangleLength = 0.0;
+    }
+
+    public Rectangle(double width, double length) {
+        this.rectangleWidth = width;
+        this.rectangleLength = length;
+    }
+
+    public double getRectangleWidth() {
+        return rectangleWidth;
+    }
+
+    public void setRectangleWidth(double newWidth) {
+        this.rectangleWidth = newWidth;
+    }
+
+    public double getRectangleLength() {
+        return rectangleLength;
+    }
+
+    public void setRectangleLength(double newLength) {
+        this.rectangleLength = newLength;
+    }
+
+    @Override
+    public double calculateArea() {
+        return rectangleWidth * rectangleLength;
+    }
+
+    @Override
+    public double calculatePerimeter() {
+        return 2 * (rectangleWidth + rectangleLength);
+    }
+
+    @Override
+    public void displayShapeDetails() {
+        System.out.println("----- Rectangle Details -----");
+        System.out.printf("Width: %.2f%n", rectangleWidth);
+        System.out.printf("Length: %.2f%n", rectangleLength);
+        System.out.printf("Area: %.2f%n", calculateArea());
+        System.out.printf("Perimeter: %.2f%n", calculatePerimeter());
+    }
+}
