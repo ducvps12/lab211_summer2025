@@ -3,19 +3,16 @@ package demomatr;
 
 public class Main {
     public static void main(String[] args) {
-        //1. Create manager to handle input/output
         MatrixManager manager = new MatrixManager();
-        //2. Create operator to handle calculations
         MatrixOperator operator = new MatrixOperator();
-        //3. Create input handler to get user data
         InputHandler input = new InputHandler();
         int choice;
 
-        //4. Loop until user chooses to exit
+        //loop infinity
         while (true) {
-            //Display menu
+            //step 1: display menu
             manager.displayMenu();
-            //Get user choice (1-4)
+            //step 2: select option
             choice = input.getInt("Your choice: ", 1, 4);
 
             //Check if user wants to exit
@@ -32,7 +29,7 @@ public class Main {
             int[][] matrix2 = manager.getMatrix2(matrix1, choice);
             int[][] result = null;
 
-            //Perform function based on selected option
+            //step 3: Perform function based on selected option
             switch (choice) {
                 //Option 1: Addition matrices
                 case 1:
