@@ -37,6 +37,7 @@ public class InputHandler {
 
     // Get a matrix element (any integer)
     public int getElement(String msg) {
+// loop infinity
         while (true) {
             System.out.print(msg);
             String input = sc.nextLine().trim();
