@@ -11,8 +11,9 @@ public class MatrixOperator {
         int cols = matrix1[0].length;
         int[][] result = new int[rows][cols];
 
-        // Loop: Add each element at position [i][j]
+        // Loop through each row
         for (int i = 0; i < rows; i++) {
+            // Loop through each column
             for (int j = 0; j < cols; j++) {
                 result[i][j] = matrix1[i][j] + matrix2[i][j];
             }
@@ -27,8 +28,9 @@ public class MatrixOperator {
         int cols = matrix1[0].length;
         int[][] result = new int[rows][cols];
 
-        // Loop: Subtract each element at position [i][j]
+        // Loop through each row
         for (int i = 0; i < rows; i++) {
+            // Loop through each column
             for (int j = 0; j < cols; j++) {
                 result[i][j] = matrix1[i][j] - matrix2[i][j];
             }
@@ -44,10 +46,12 @@ public class MatrixOperator {
         int colB = matrix2[0].length;
         int[][] result = new int[rowA][colB];
 
-        // Loop: Matrix multiplication algorithm
+        // Loop through each row of matrix1
         for (int i = 0; i < rowA; i++) {
+            // Loop through each column of matrix2
             for (int j = 0; j < colB; j++) {
                 result[i][j] = 0;
+                // Loop through each element for multiplication
                 for (int k = 0; k < colA; k++) {
                     result[i][j] += matrix1[i][k] * matrix2[k][j];
                 }
