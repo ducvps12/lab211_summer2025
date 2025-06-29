@@ -1,40 +1,51 @@
-public class MainProgram {
+public class Main {
     public static void main(String[] args) {
-        MatrixManager manager = new MatrixManager();       // Step 1: Create manager to handle input/output
-        MatrixOperator operator = new MatrixOperator();     // Step 2: Create operator to do calculations
-        InputHandler input = new InputHandler();            // Step 3: Create input handler to get user data
+        //1. Create manager to handle input/output
+        MatrixManager manager = new MatrixManager();
+        //2. Create operator to handle calculations
+        MatrixOperator operator = new MatrixOperator();
+        //3. Create input handler to get user data
+        InputHandler input = new InputHandler();
+        int choice;
 
-        // Step 4: Loop until user selects exit
+        //4. Loop until user chooses to exit
         while (true) {
-            manager.displayMenu();                          // Function 1: Display menu to user
-            int choice = input.getInt("Your choice: ", 1, 4);  // Step 5: Ask user to choose function
+            //Display menu
+            manager.displayMenu();
+            //Get user choice (1-4)
+            choice = input.getInt("Your choice: ", 1, 4);
 
-            // Condition: check if user wants to quit
+            //Check if user wants to exit
             if (choice == 4) {
-                System.out.println("Program exited. Goodbye!"); // Step 6: Exit
+                System.out.println("Program exited. Goodbye!");
                 break;
             }
 
-            // Step 7: Display operation title (Addition / Subtraction / Multiplication)
+            //Display operation title
             manager.displayOperationTitle(choice);
-
-            // Step 8: Get first matrix (rows, columns, values)
+            //Input matrix 1
             int[][] matrix1 = manager.getMatrix("Matrix 1");
-
-            // Step 9: Get second matrix (with condition check)
+            //Input matrix 2
             int[][] matrix2 = manager.getMatrix2(matrix1, choice);
-
-            // Step 10: Declare result matrix
             int[][] result = null;
 
-            // Function 2: Perform calculation based on selected option
+            //Perform function based on selected option
             switch (choice) {
-                case 1 -> result = operator.additionMatrix(matrix1, matrix2);          // Option 1: Addition
-                case 2 -> result = operator.subtractionMatrix(matrix1, matrix2);       // Option 2: Subtraction
-                case 3 -> result = operator.multiplicationMatrix(matrix1, matrix2);    // Option 3: Multiplication
+                //Option 1: Addition matrices
+                case 1:
+                    result = operator.additionMatrix(matrix1, matrix2);
+                    break;
+                //Option 2: Subtraction matrices
+                case 2:
+                    result = operator.subtractionMatrix(matrix1, matrix2);
+                    break;
+                //Option 3: Multiplication matrices
+                case 3:
+                    result = operator.multiplicationMatrix(matrix1, matrix2);
+                    break;
             }
 
-            // Step 11: Display result of the operation
+            //Display result
             manager.displayResult(matrix1, matrix2, result, choice);
         }
     }
