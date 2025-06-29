@@ -17,7 +17,7 @@ public class Main {
 
             //Check if user wants to exit
             if (choice == 4) {
-                System.out.println("Program exited. Goodbye!");
+                System.out.println("Program exited");
                 break;
             }
 
@@ -29,7 +29,7 @@ public class Main {
             int[][] matrix2 = manager.getMatrix2(matrix1, choice);
             int[][] result = null;
 
-            //step 3: Perform function based on selected option
+            //step 3: do function based on selected option
             switch (choice) {
                 //Option 1: Addition matrices
                 case 1:
