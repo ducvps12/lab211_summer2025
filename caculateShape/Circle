@@ -1,0 +1,39 @@
+package calculateshape;
+
+public class Circle extends Shape {
+    private double circleRadius;
+
+    public Circle() {
+        this.circleRadius = 0.0;
+    }
+
+    public Circle(double radius) {
+        this.circleRadius = radius;
+    }
+
+    public double getCircleRadius() {
+        return circleRadius;
+    }
+
+    public void setCircleRadius(double newRadius) {
+        this.circleRadius = newRadius;
+    }
+
+    @Override
+    public double calculateArea() {
+        return Math.PI * circleRadius * circleRadius;
+    }
+
+    @Override
+    public double calculatePerimeter() {
+        return 2 * Math.PI * circleRadius;
+    }
+
+    @Override
+    public void displayShapeDetails() {
+        System.out.println("----- Circle Details -----");
+        System.out.printf("Radius: %.2f%n", circleRadius);
+        System.out.printf("Area: %.2f%n", calculateArea());
+        System.out.printf("Perimeter: %.2f%n", calculatePerimeter());
+    }
+}
