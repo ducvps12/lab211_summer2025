@@ -1,0 +1,79 @@
+package calculateshape;
+
+import java.util.Scanner;
+
+public class InputDataHandler {
+    private static final Scanner consoleScanner = new Scanner(System.in);
+
+    public static double getPositiveDouble() {
+        double numericalValue = 0.0;
+        boolean isValidInput = false;
+
+        while (!isValidInput) {
+            System.out.print("Please enter a positive numerical value: ");
+            try {
+                String rawInput = consoleScanner.nextLine();
+                numericalValue = Double.parseDouble(rawInput);
+
+                if (numericalValue < 0) {
+                    System.out.println(" The input must be a non-negative number.");
+                } else {
+                    isValidInput = true;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println(" Invalid number format.");
+            }
+        }
+        return numericalValue;
+    }
+
+    public static void gatherRectangleDimensions(Rectangle targetRectangle) {
+        System.out.println("\n--- Entering Rectangle Dimensions ---");
+        System.out.print("Enter the width of the Rectangle: ");
+        targetRectangle.setRectangleWidth(getPositiveDouble());
+
+        System.out.print("Enter the length of the Rectangle: ");
+        targetRectangle.setRectangleLength(getPositiveDouble());
+    }
+
+    public static void gatherCircleRadius(Circle targetCircle) {
+        System.out.println("\n--- Entering Circle Radius ---");
+        System.out.print("Enter the radius of the Circle: ");
+        targetCircle.setCircleRadius(getPositiveDouble());
+    }
+
+    public static void gatherTriangleSides(Triangle targetTriangle) {
+        boolean isValidTriangle = false;
+
+        while (!isValidTriangle) {
+            System.out.println("\n--- Entering Triangle Side Lengths ---");
+            System.out.print("Enter the length of Side A: ");
+            targetTriangle.setSideA(getPositiveDouble());
+
+            System.out.print("Enter the length of Side B: ");
+            targetTriangle.setSideB(getPositiveDouble());
+
+            System.out.print("Enter the length of Side C: ");
+            targetTriangle.setSideC(getPositiveDouble());
+
+            double currentSideA = targetTriangle.getSideA();
+            double currentSideB = targetTriangle.getSideB();
+            double currentSideC = targetTriangle.getSideC();
+
+            if ((currentSideA + currentSideB > currentSideC) &&
+                (currentSideA + currentSideC > currentSideB) &&
+                (currentSideB + currentSideC > currentSideA)) {
+                isValidTriangle = true;
+            } else {
+                System.out.println(" The provided side lengths do not form a valid triangle.");
+                System.out.println("The sum of any two sides must be greater than the third side. Please re-enter.");
+            }
+        }
+    }
+
+    public static void closeScanner() {
+        if (consoleScanner != null) {
+            consoleScanner.close();
+        }
+    }
+}
