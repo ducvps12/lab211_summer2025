@@ -1,0 +1,23 @@
+package calculateshape;
+
+public class CalculateShape {
+
+    public static void main(String[] args) {
+        Rectangle myRectangle = new Rectangle();
+        Circle myCircle = new Circle();
+        Triangle myTriangle = new Triangle();
+
+        //step 1: user input size of shapes  
+        InputDataHandler.gatherRectangleDimensions(myRectangle);
+        InputDataHandler.gatherCircleRadius(myCircle);
+        InputDataHandler.gatherTriangleSides(myTriangle);
+
+        //step2 : display result
+        myRectangle.displayShapeDetails();
+        myCircle.displayShapeDetails();
+        myTriangle.displayShapeDetails();
+
+        InputDataHandler.closeScanner();
+
+    }
+}
