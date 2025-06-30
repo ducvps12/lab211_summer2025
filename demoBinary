@@ -15,9 +15,8 @@ public class BinarySearchProgram {
         int arraySize = GetPositiveInteger(scanner, "Enter number of array: ");
 
         // Step 2: Generate sorted random array
-//        int[] array = GenerateSortedRandomArray(arraySize);
+    int[] array = GenerateSortedRandomArray(arraySize);
        
-        int[] array = { 1,1,1,1,3,4,6,8,9,9}; 
         // Step 3: Display sorted array
         DisplayArray(array);
 
@@ -27,9 +26,7 @@ public class BinarySearchProgram {
         // Step 5: Perform binary search and display result
         DisplaySearchResult(array, target);
 
-        
-//        RunTestExamples();
-//        scanner.close();
+
     }
 
    public static int GetPositiveInteger(Scanner scanner, String message) {
@@ -38,12 +35,12 @@ public class BinarySearchProgram {
     while (true) {
         System.out.println(message);
 
-        // Loop to check input type is integer
+       // Loop until user enters an integer
         if (scanner.hasNextInt()) {
             number = scanner.nextInt();
             scanner.nextLine(); // Clear buffer after input
 
-            //  must be positive
+       // Check if number is positive
             if (number > 0) {
                 return number; // Valid input
             } else {
@@ -61,7 +58,8 @@ public class BinarySearchProgram {
         int[] array = new int[size];
         Random random = new Random();
 
-        // Loop: Generate random integers for each array element
+      
+        // Loop to fill array with random integers
         for (int i = 0; i < size; i++) {
             array[i] = random.nextInt(301) - 100; // Generate number between -100 and 200
         }
@@ -71,12 +69,12 @@ public class BinarySearchProgram {
         return array;
     }
 
-    // Display array elements
+
     public static void DisplayArray(int[] array) {
         System.out.println("Sorted array: " + Arrays.toString(array));
     }
 
-    // Perform binary search and display result
+    
     public static void DisplaySearchResult(int[] array, int target) {
         int index = DoBinarySearch(array, target);
 
@@ -84,7 +82,7 @@ public class BinarySearchProgram {
         if (index != -1) {
             System.out.println("Value " + target + " found at index: " + index);
         } else {
-            // Condition: target not found
+            //  target not found
             System.out.println("Value " + target + " not found in the array.");
         }
     }
@@ -93,16 +91,17 @@ public class BinarySearchProgram {
         int left = 0;
         int right = array.length - 1;
 
-        // Loop: Continue searching while left <= right
+      
+        // Keep searching while left index is <= right index
         while (left <= right) {
             int mid = left + (right - left) / 2; // Calculate middle index
 
-            // Condition: target found
+            //   // Found the target
             if (array[mid] == target) {
                 return mid;
             }
 
-            // Condition: target greater than mid value
+            //Target is in the right half
             if (array[mid] < target) {
                 left = mid + 1;
             } else {
@@ -115,68 +114,5 @@ public class BinarySearchProgram {
         return -1;
     }
 
-    // Run 2 fixed test examples from assignment
-//    public static void RunTestExamples() {
-//        int[] sampleArray = {-1, 5, 6, 18, 19, 25, 46, 78, 102, 114};
-//
-//        System.out.println("\n==== Example 1: Find 6 in sample array ====");
-//        ShowBinarySearchSteps(sampleArray, 6);
-//
-//        System.out.println("\n==== Example 2: Find 103 in sample array ====");
-//        ShowBinarySearchSteps(sampleArray, 103);
-//    }
-//
-    // Show each step of binary search (like sample examples)
-//    public static void ShowBinarySearchSteps(int[] array, int target) {
-//        int left = 0;
-//        int right = array.length - 1;
-//        int step = 1;
-//
-//        // Loop: Perform binary search step by step
-//        while (left <= right) {
-//            int mid = left + (right - left) / 2; // Get middle index
-//            int midValue = array[mid]; // Get middle value
-//
-//            // Display step info
-//            System.out.print("Step " + step + " (middle element is " + midValue);
 
-            // Condition: Check relation between mid value and target
-//            if (midValue == target) {
-//                System.out.print(" == " + target + "): ");
-//            } else if (midValue < target) {
-//                System.out.print(" < " + target + "): ");
-//            } else {
-//                System.out.print(" > " + target + "): ");
-//            }
-
-            // Display full array with middle element highlighted
-//            for (int i = 0; i < array.length; i++) {
-//                if (i == mid) {
-//                    System.out.print("[" + array[i] + "] ");
-//                } else {
-//                    System.out.print(array[i] + " ");
-//                }
-//            }
-//            System.out.println();
-//
-//            // Condition: Found target
-//            if (midValue == target) {
-//                System.out.println("=> Found at index: " + mid + "\n");
-//                return;
-//            }
-//
-//            // Condition: Search right half
-//            if (midValue < target) {
-//                left = mid + 1;
-//            } else {
-//                // Condition: Search left half
-//                right = mid - 1;
-//            }
-//
-//            step++; // Increase step count
-//        }
-//
-//        // Condition: Target not found after loop
-//        System.out.println("=> Searched value is absent\n");
-//    }
 }
