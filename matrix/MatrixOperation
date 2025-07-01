@@ -1,11 +1,8 @@
 package matrixcalculator;
 
-/**
- * This class contains core logic to operate on matrices.
- */
+
 public class MatrixOperator {
 
-    // Perform addition of two matrices
     public int[][] additionMatrix(int[][] matrix1, int[][] matrix2) {
         int rows = matrix1.length;
         int cols = matrix1[0].length;
@@ -22,7 +19,6 @@ public class MatrixOperator {
         return result;
     }
 
-    // Perform subtraction of two matrices
     public int[][] subtractionMatrix(int[][] matrix1, int[][] matrix2) {
         int rows = matrix1.length;
         int cols = matrix1[0].length;
@@ -39,7 +35,6 @@ public class MatrixOperator {
         return result;
     }
 
-    // Perform multiplication of two matrices
     public int[][] multiplicationMatrix(int[][] matrix1, int[][] matrix2) {
         int rowA = matrix1.length;
         int colA = matrix1[0].length;
